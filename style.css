@@ -1,0 +1,47 @@
+/* General */
+
+html {
+    font-family: georgia, arial, sans-serif;
+}
+
+body {
+    background-color: rgb(200, 200, 200);
+}
+
+.photoCv {
+    float: right;
+}
+
+a:hover,
+a:visited {
+    color: gray;
+}
+
+#orange,
+.orange {
+    color: #777;
+    font-size: 0.7em;
+}
+
+section {
+    width: 85%;
+    height: 100%;
+    margin: auto;
+    border: 2px solid black;
+    background-color: white;
+    margin-top: 8em;
+    padding: 1em;
+    box-shadow: 4px 4px 4px #777;
+}
+section span {
+    color: gray;
+}
+section h1 {    
+    text-shadow: 1px 1px 1px black;
+}
+
+@media screen and (max-width: 600px) {
+    article {
+        display: none;
+    }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+	<title>Thibault Vinchent Resume</title>
+	<link rel="stylesheet" href="style/cv-responsive.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	
+	function validationFormulaire() {
+	    var x = document.forms["formContact"]["messageContact"].value;
+	    if (x == null || x == "") {
+	        alert("Vous avez oublié d'insérer un message");
+	        return false;
+	    }
+	    else{
+	    	$(function(){
+	    		var str = $(".ajaxform").serialize();
+	    		console.log("test");
+	    		console.log(str);
+			   $.ajax({
+			       type : 'POST',
+			       data : str,
+			       url : 'http://je-code.com/exercices/exercice24-envoie-via-ajax/contact.php',
+			       dataType : 'html',
+			       success : function(code_html, statut){
+						$("success").appendTo("#commentaires"); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+			       },
+			       error : function(resultat, statut, erreur){
+						$("error").appendTo("#commentaires");
+			       },
+			       complete : function(resultat, statut){
+						$("complete").appendTo("#commentaires");
+			       }
+			    });
+			});
+			$("#commentaires").addClass("done");
+	    }
+	}
+	</script>
+	<style type="text/css">
+	.done{
+		color: green;
+	}
+	</style>
+</head>
+<body>
+	<h1>Formulaire de contact</h1>
+	<div id="commentaires">test</div>
+
+	<form name="formContact" onsubmit="return validationFormulaire()" enctype="application/x-www-form-urlencoded" method="POST" action="#" class="ajaxform">
+		Nom:<br>
+		<input type="text"><br>
+		Adresse mail:<br>
+		<input type="email" name="email"><br>
+		T&eacute;l&eacute;phone:<br>
+		<input type="tel"><br>
+		Message:<br>
+		<textarea id="form-textarea" name="messageContact"></textarea><br>
+		<input type="checkbox" name="autorisation"> Je vous autorise &agrave; conserver ces coordonn&eacute;es<br>
+		<input type="submit" value="Envoyer">
+		<input type="hidden" name="envoie" value="save" />
+	</form>
+
+</body>
+</html>
